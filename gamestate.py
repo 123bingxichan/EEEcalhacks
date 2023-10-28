@@ -14,7 +14,7 @@ class Gamestate():
         #set player is false at current board
         self.board.getPosition(x,y).player = False
 
-        self.player.move(self.plyaer_input)
+        self.player.move(self.player_input)
 
         #get position after move
         x = self.player.position[0]
