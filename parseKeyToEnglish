@@ -1,0 +1,38 @@
+import pygame
+
+class parseKeyToEnglish:
+
+    '''
+    Parameters:
+    A non-empty array of pygame key inputs, K.0, K.1...
+    Outputs:
+    An array of input dimension in english, "left, right", ...
+    '''
+    def keyToEngl(keyInputs):
+        englishInputs = []
+        for move in keyInputs:
+            #diag UL
+            if (move == pygame.K_1):
+                englishInputs.append("diag up-left")             
+            #up
+            if (move == pygame.K_2):
+                englishInputs.append("up")                             
+            #diag UR
+            if (move == pygame.K_3):
+                englishInputs.append("diag up-right")             
+            #right
+            if (move == pygame.K_4):
+                englishInputs.append("right")             
+            #diag DR
+            if (move == pygame.K_5):
+                englishInputs.append("diag down-right")                             
+            #down
+            if (move == pygame.K_6):
+                englishInputs.append("diag down")             
+            #diag DL
+            if (move == pygame.K_7):           
+                englishInputs.append("diag down-left")             
+            #left
+            if (move == pygame.K_8):
+                englishInputs.append("left")             
+        return englishInputs
