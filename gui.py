@@ -26,7 +26,6 @@ class gui():
             curr_y += self.height//n-1
 
     def draw_box(self, n , k ):
-
         box_width = ((self.width-((n-1)*5))//n)-2*k
         box_height = ((self.height-((n-1)*5))//n) - 2*k
         for row in range(k,self.width, box_width+2*k+5):
@@ -52,9 +51,6 @@ class gui():
             self.player_input.append(pygame.K_7)
         if (keys[pygame.K_8]):
             self.player_input.append(pygame.K_8)
-
-        if(len(self.player_input) > len(self.gamestate.rules.winCondition)):
-            self.player_input.pop(0)
 
     def update(self):
         # Update Pygame display

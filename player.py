@@ -20,6 +20,7 @@ class Player:
     # 1 is diag left, goes clockwise around
     # allows us to define difference between corner move and diagonal
     # move is understood to be a single int/string or an array, loops over array
+    # TODO: add illegal moves if out of bounds
     def parseMove(self, moves):
         if type(moves) == str or int:
             moves = [moves]
