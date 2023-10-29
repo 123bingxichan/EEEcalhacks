@@ -26,6 +26,8 @@ class Rules:
     #in given rules, pygame.K_2 is valid, but
     #pygame.K_2, pygame.K_4 is not.
     legalMoves = []
+
+    isRuleUncovered = []
     
     def __init__(self):
         self.winCondition = Rules.genRule(3, 6)
@@ -36,7 +38,8 @@ class Rules:
         for i in range(0, self.numAddtlRules):
             self.extraRules.append(Rules.genRule(2, 6))
         self.legalMoves = self.extraRules + self.givenRules + self.winCondition + self.loseCondition
-    
+        self.isRuleUncovered = [True if x == 0 else False for x in range(0, len(self.legalMoves))]
+
     '''
     Parameters:
     minimum rule length, max rule length,
@@ -59,3 +62,16 @@ class Rules:
                 if r[i] != move[i]:
                     return False
         return True
+    
+    def isMoveWin(self, move):
+        return True if (move == self.winCondition[0]) else False
+    
+    def isMoveLose(self, move):
+        return True if (move == self.loseCondition[0]) else False
+
+    def uncoverRule(self):
+        rand = random(0, len(self.uncoverRule))
+        if (self.uncoverRule[rand] == False):
+            self.uncoverRule[rand] = True
+        else:
+            self.uncoverRule()

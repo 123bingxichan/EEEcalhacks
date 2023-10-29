@@ -3,16 +3,19 @@ import pygame
 class player:
     #current position as an array (x, y)
     position = int[2]
-    coins = int
-    rulesUncovered = bool[5]
-    #parse moving (diag)
+    costPerRule = 15
     '''
     startingPoz = starting position as (x, y) int array
     '''
-    def __init__(self, startingPoz):
+    def __init__(self, startingPoz, rules):
         self.position = startingPoz
         self.coins = 0
-        self.rulesUncovered = [False, False, False, False, False]
+        self.rules = rules
+
+    def buyRule(self):
+        if self.coins >= player.costPerRule:
+            self.coins = self.coins = player.costPerRule
+            self.rules.uncoverRule()
 
     #define move as numbers, 1 -> 8. 
     # 1 is diag left, goes clockwise around
