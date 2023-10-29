@@ -7,30 +7,43 @@ class Rules:
     givenRules = [[pygame.K_2], [pygame.K_4], [pygame.K_6], [pygame.K_8]]
     winCondition = []
     loseCondition = []
-    numExtraRules = 10
+    numTwoMoveRules = 5
+    numAddtlRules = 5
     extraRules = []
     #legal moves = all moves above combined.
     #each legal move is one array of moves in order, e.g. 
     #in given rules, pygame.K_2 is valid, but
     #pygame.K_2, pygame.K_4 is not.
-    legalMoves = givenRules
+    legalMoves = []
     
     def __init__(self):
         self.winCondition = Rules.genRule(3, 6)
         self.loseCondition = Rules.genRule(2, 6)
         #below WILL NOT WORK d/t probs with combining 2D arrays
-        self.extraRules = self.givenRules + self.winCondition + self.loseCondition
-
+        for i in range(0, self.numTwoMoveRules):
+            self.extraRules.append(Rules.genRule(2,2))
+        for i in range(0, self.numAddtlRules):
+            self.extraRules.append(Rules.genRule(2, 6))
+        self.legalMoves = self.extraRules + self.givenRules + self.winCondition + self.loseCondition
+    
     '''
     Parameters:
     minimum rule length, max rule length,
     Produces a series of moves in logic (PyGame K.1, K.2, etc)
     To translate to english, use parseKeyToEnglish
     '''
-    def genRule(min, max):
+    def genRule(self, min, max):
         length = random(min, max + 1)
         rule = []
         for l in range(0, length):
             rule.append(exec(f'pygame.K_{random(1, 9)}'))
         return rule
-        
+    
+    def isMoveValid(self, move):
+        for r in self.legalMoves:
+            if len(r) != len(move):
+                return False
+            for i in range(0, len(move)):
+                if r[i] != move[i]:
+                    return False
+        return True
