@@ -1,5 +1,6 @@
 # Example file showing a basic pygame "game loop"
 import pygame
+from gui import render
 
 # pygame setup
 pygame.init()
@@ -14,7 +15,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     # RENDER YOUR GAME HERE
-    screen.fill("black")
+    render(screen)
 
     # flip() the display to put your work on screen
     pygame.display.flip()

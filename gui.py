@@ -21,40 +21,8 @@ def draw_box(screen, n , k ):
         for col in range(k,SCREEN_HEIGHT, box_height+2*k+5):
             pygame.draw.rect(screen, (100,200,200), pygame.Rect(row,col,box_width,box_height))
 
-# Initialize Pygame
-pygame.init()
-
-# Initialize TKinter
-root = tk.Tk()
-root.title("Pygame with TKinter")
-
-# Pygame screen dimensions
-SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
-
-# Create Pygame screen
-pygame_screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-# Create a TKinter label
-label = ttk.Label(root, text="Pygame with TKinter")
-label.pack()
-
-# Main loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
+def render(screen):
     # Update Pygame display
-    pygame_screen.fill((255, 255, 255))
-    draw_board(pygame_screen,5)
-    draw_box(pygame_screen, 5,20)
-    pygame.display.flip()
-
-    # Update TKinter window
-    root.update()
-
-# Quit Pygame and TKinter
-pygame.quit()
-root.destroy()
-
+    screen.fill((255, 255, 255))
+    draw_board(screen,5)
+    draw_box(screen, 5,20)
