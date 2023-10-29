@@ -1,8 +1,7 @@
 import pygame
 
-class player:
+class Player:
     #current position as an array (x, y)
-    position = int[2]
     costPerRule = 15
     '''
     startingPoz = starting position as (x, y) int array
@@ -17,7 +16,7 @@ class player:
             self.coins = self.coins = player.costPerRule
             self.rules.uncoverRule()
 
-    #define move as numbers, 1 -> 8. 
+    #define move as numbers, 1 -> 8.
     # 1 is diag left, goes clockwise around
     # allows us to define difference between corner move and diagonal
     # move is understood to be a single int/string or an array, loops over array
@@ -28,7 +27,7 @@ class player:
             #diag UL
             if (move == pygame.K_1):
                 self.position[1] = self.position[1] + 1
-                self.position[0] = self.position[0] - 1               
+                self.position[0] = self.position[0] - 1
             #up
             if (move == pygame.K_2):
                 self.position[1] = self.position[1] + 1
@@ -49,7 +48,7 @@ class player:
             #diag DL
             if (move == pygame.K_7):
                 self.position[1] = self.position[1] - 1
-                self.position[0] = self.position[0] - 1            
+                self.position[0] = self.position[0] - 1
             #left
             if (move == pygame.K_8):
                 self.position[0] = self.position[0] - 1

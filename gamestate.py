@@ -4,9 +4,9 @@ from rules import Rules
 
 class Gamestate():
     def __init__(self, rows, cols):
-        self.player = Player([rows/2, cols/2])
-        self.board = Board(rows, cols)
         self.rules = Rules()
+        self.player = Player([int(rows/2), int(cols/2)], self.rules)
+        self.board = Board(rows, cols)
 
         self.win = False
         self.lose = False
@@ -27,7 +27,7 @@ class Gamestate():
         y = self.player.position[1]
 
         #update player values
-        self.player.money += self.board.getPosition(x, y).get("money")
+        self.player.coins += self.board.selectTile(x, y).money
 
         #check if player won/lose
         self.check_end_conditions(player_input)
@@ -38,4 +38,3 @@ class Gamestate():
 
     def render(self, player_input):
         self.move_player(player_input)
-        self.check_end_conditions()

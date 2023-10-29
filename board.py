@@ -11,7 +11,7 @@ class Tile:
         self.money += amount
     def money(self):
         return f"Money: {self.money}"
-    
+
 
 
 class Board:
@@ -31,8 +31,9 @@ class Board:
         # getMoney takes in integers for an x coordinate and a y coordinate to get the amount of money on a given tile
         if 0 <= x < self.rows and 0 <= y < self.cols:
             return self.tiles[x][y].money
-    
 
+
+"""
 # Example usage:
 
 # Create a 5 x 5 board
@@ -47,7 +48,8 @@ print(selectedTile.money)
 # Add some money to that tile
 selectedTile.addMoney(10)
 
-# Check if there is money on that tile 
+# Check if there is money on that tile
 money_on_center_tile = board.getMoney(2,2)
 print(f"Money on center tile: {money_on_center_tile}")
+"""
 

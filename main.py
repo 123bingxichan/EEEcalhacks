@@ -1,12 +1,12 @@
 # Example file showing a basic pygame "game loop"
 import pygame
-from gui import render
+from gui import gui
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
+display = gui()
 
 while running:
     # poll for events
@@ -15,11 +15,11 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     # RENDER YOUR GAME HERE
-    render(screen)
+    display.update()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
 
-    clock.tick(60)  # limits FPS to 60
+    clock.tick(500)  # limits FPS to 60
 
 pygame.quit()

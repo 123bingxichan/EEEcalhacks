@@ -22,21 +22,21 @@ class Rules:
     numAddtlRules = 5
     extraRules = []
     #legal moves = all moves above combined.
-    #each legal move is one array of moves in order, e.g. 
+    #each legal move is one array of moves in order, e.g.
     #in given rules, pygame.K_2 is valid, but
     #pygame.K_2, pygame.K_4 is not.
     legalMoves = []
 
     isRuleUncovered = []
-    
+
     def __init__(self):
-        self.winCondition = Rules.genRule(3, 6)
-        self.loseCondition = Rules.genRule(2, 6)
+        self.winCondition = self.genRule(3, 6)
+        self.loseCondition = self.genRule(2, 6)
         #below WILL NOT WORK d/t probs with combining 2D arrays
         for i in range(0, self.numTwoMoveRules):
-            self.extraRules.append(Rules.genRule(2,2))
+            self.extraRules.append(self.genRule(2,2))
         for i in range(0, self.numAddtlRules):
-            self.extraRules.append(Rules.genRule(2, 6))
+            self.extraRules.append(self.genRule(2, 6))
         self.legalMoves = self.extraRules + self.givenRules + self.winCondition + self.loseCondition
         self.isRuleUncovered = [True if x == 0 else False for x in range(0, len(self.legalMoves))]
 
@@ -46,14 +46,14 @@ class Rules:
     Produces a series of moves in logic (PyGame K.1, K.2, etc)
     To translate to english, use parseKeyToEnglish
     '''
-    def genRule(self, min, max):
-        length = random(min, max + 1)
+    def genRule(self, min_len, max_len):
+        length = random.randint(min_len, max_len + 1)
         rule = []
         for l in range(0, length):
-            rand = random(1, 9)
+            rand = random.randint(1, 9)
             rule.append(self.intsToRules.get(rand))
         return rule
-    
+
     def isMoveValid(self, move):
         for r in self.legalMoves:
             if len(r) != len(move):
@@ -62,15 +62,15 @@ class Rules:
                 if r[i] != move[i]:
                     return False
         return True
-    
+
     def isMoveWin(self, move):
         return True if (move == self.winCondition[0]) else False
-    
+
     def isMoveLose(self, move):
         return True if (move == self.loseCondition[0]) else False
 
     def uncoverRule(self):
-        rand = random(0, len(self.uncoverRule))
+        rand = random.randint(0, len(self.uncoverRule))
         if (self.uncoverRule[rand] == False):
             self.uncoverRule[rand] = True
         else:
