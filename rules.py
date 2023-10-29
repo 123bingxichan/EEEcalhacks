@@ -4,6 +4,17 @@ import random
 #each "rule" is a valid move along the board
 #there are proportionally more valid 2-space moves than 3, etc.
 class Rules:
+    intsToRules = {
+        1: pygame.K_1,
+        2: pygame.K_2,
+        3: pygame.K_3,
+        4: pygame.K_4,
+        5: pygame.K_5,
+        6: pygame.K_6,
+        7: pygame.K_7,
+        8: pygame.K_8
+    }
+
     givenRules = [[pygame.K_2], [pygame.K_4], [pygame.K_6], [pygame.K_8]]
     winCondition = []
     loseCondition = []
@@ -36,7 +47,8 @@ class Rules:
         length = random(min, max + 1)
         rule = []
         for l in range(0, length):
-            rule.append(exec(f'pygame.K_{random(1, 9)}'))
+            rand = random(1, 9)
+            rule.append(self.intsToRules.get(rand))
         return rule
     
     def isMoveValid(self, move):
